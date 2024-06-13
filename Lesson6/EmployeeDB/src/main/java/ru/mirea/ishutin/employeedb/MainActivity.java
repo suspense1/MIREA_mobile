@@ -14,25 +14,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppDatabase db = App.getInstance().getDatabase();
-        EmployeeDao employeeDao = db.employeeDao();
-        Employee employee = new Employee();
-        employee.id = 1;
-        employee.name = "John Smith";
-        employee.salary = 10000;
+        SuperheroDao superheroDao = db.superheroDao();
+        Superhero superhero = new Superhero();
+        superhero.id = 1;
+        superhero.name = "Elon Mask";
+        superhero.power = 10000;
+
+        superheroDao.insert(superhero);
+        Superhero superhero2 = new Superhero();
+        superhero2.id = 2;
+        superhero2.name = "Iron Man";
+        superhero2.power = 9999;
 
         // запись сотрудников в базу
-        employeeDao.insert(employee);
-
-        // Загрузка всех работников
-        List<Employee> employees = employeeDao.getAll();
-
+        superheroDao.insert(superhero2);
+        List<Superhero> superheroes = superheroDao.getAll();
         // Получение определенного работника с id = 1
-        employee = employeeDao.getById(1);
+        superhero = superheroDao.getById(1);
 
         // Обновление полей объекта
-        employee.salary = 20000;
-        employeeDao.update(employee);
+        superhero.power = 20000;
+        superheroDao.update(superhero);
 
-        Log.d("DATABASE SIGNAL", employee.name + " " + employee.salary);
+        Log.d("DATABASE SIGNAL", superhero.name + " " + superhero.power);
     }
 }

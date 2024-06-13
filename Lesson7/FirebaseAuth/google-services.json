@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "756614369955",
-    "project_id": "lesson7-be418",
-    "storage_bucket": "lesson7-be418.appspot.com"
+    "project_number": "662439358281",
+    "project_id": "lesson7-ca030",
+    "storage_bucket": "lesson7-ca030.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:756614369955:android:10548cd2596335009aa516",
+        "mobilesdk_app_id": "1:662439358281:android:eed383d2cfce7a13f5b498",
         "android_client_info": {
           "package_name": "ru.mirea.ishutin.firebaseauth"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyADlSLvm1eMMhcYTpmtHdE-6FGCU2GY_9s"
+          "current_key": "AIzaSyCrj-bHpUiZKm2_FW0e0lnXyzt6E5QxYZM"
         }
       ],
       "services": {
