@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1094644359077",
+    "project_id": "mobile-store-8aa6b",
+    "storage_bucket": "mobile-store-8aa6b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094644359077:android:48f42b85a89d6d96cf124c",
+        "android_client_info": {
+          "package_name": "ru.mirea.ishutin.mobile_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYJkysYPRGsGQiBgxcKcvWfexH_1LV3Hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1094644359077:android:55d8efd344b1a067cf124c",
+        "android_client_info": {
+          "package_name": "ru.mirea.ishutin.mobile_store.presentation"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYJkysYPRGsGQiBgxcKcvWfexH_1LV3Hw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

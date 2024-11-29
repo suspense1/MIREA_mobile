@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "mobile_store"
 include(":app")
- 
+include(":data")
+include(":domain")

@@ -1,21 +1,20 @@
 package ru.mirea.ishutin.mobile_store.presentation;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import ru.mirea.ishutin.mobile_store.R;
-import ru.mirea.ishutin.mobile_store.data.repository.ProductRepositoryImpl;
-import ru.mirea.ishutin.mobile_store.data.repository.UserRepositoryImpl;
+import ru.mirea.ishutin.data.data.repository.ProductRepositoryImpl;
+import ru.mirea.ishutin.data.data.repository.UserRepositoryImpl;
+import ru.mirea.ishutin.data.data.storage.ProductStorage;
+import ru.mirea.ishutin.data.data.storage.UserStorage;
+import ru.mirea.ishutin.data.data.storage.sharedprefs.SharedPrefProductStorage;
+import ru.mirea.ishutin.data.data.storage.sharedprefs.SharedPrefUserStorage;
+import ru.mirea.ishutin.domain.domain.repository.ProductRepository;
+import ru.mirea.ishutin.domain.domain.repository.UserRepository;
 import ru.mirea.ishutin.mobile_store.databinding.ActivityMainBinding;
-import ru.mirea.ishutin.mobile_store.domain.models.Product;
-import ru.mirea.ishutin.mobile_store.domain.models.User;
-import ru.mirea.ishutin.mobile_store.domain.repository.ProductRepository;
-import ru.mirea.ishutin.mobile_store.domain.repository.UserRepository;
-import ru.mirea.ishutin.mobile_store.domain.usecases.GetCartProductsUseCase;
-import ru.mirea.ishutin.mobile_store.domain.usecases.GetFavsProductsUseCase;
+
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +26,13 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ProductRepository productRepository = new ProductRepositoryImpl(this);
-        UserRepository userRepository = new UserRepositoryImpl(this);
+//        ProductRepository productRepository = new ProductRepositoryImpl(this);
+//        UserRepository userRepository = new UserRepositoryImpl(this);
+
+        ProductStorage sharedPrefProductStorage = new SharedPrefProductStorage(this);
+        ProductRepository productRepository = (ProductRepository) new ProductRepositoryImpl(sharedPrefProductStorage);
+
+        UserStorage sharedPrefUserStorage = new SharedPrefUserStorage(this);
+        UserRepository userRepository = (UserRepository) new UserRepositoryImpl(sharedPrefUserStorage);
     }
 }
