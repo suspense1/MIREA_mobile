@@ -1,5 +1,7 @@
 package ru.mirea.ishutin.domain.domain.repository;
 
+import java.util.List;
+
 import ru.mirea.ishutin.domain.domain.models.Product;
 
 public interface ProductRepository {
@@ -10,6 +12,6 @@ public interface ProductRepository {
     public Product[] getFavProducts();
     public Product[] getCartProducts();
     public Product getProductData();
-    public Product[] getAllProduct();
+    public void getAllProduct(ApiCallback<List<Product>> apiCallback);
 
 }

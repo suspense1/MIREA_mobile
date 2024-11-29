@@ -1,6 +1,9 @@
 package ru.mirea.ishutin.domain.domain.usecases;
 
+import java.util.List;
+
 import ru.mirea.ishutin.domain.domain.models.Product;
+import ru.mirea.ishutin.domain.domain.repository.ApiCallback;
 import ru.mirea.ishutin.domain.domain.repository.ProductRepository;
 
 public class GetAllProductsUseCase {
@@ -11,7 +14,7 @@ public class GetAllProductsUseCase {
         this.productRepository = productRepository;
     }
 
-    public Product[] execute(){
-        return productRepository.getAllProduct();
+    public void execute(ApiCallback<List<Product>> apiCallback){
+        productRepository.getAllProduct(apiCallback);
     }
 }

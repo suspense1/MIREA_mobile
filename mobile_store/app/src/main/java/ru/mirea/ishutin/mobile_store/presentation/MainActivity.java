@@ -1,19 +1,20 @@
 package ru.mirea.ishutin.mobile_store.presentation;
 
+
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
-import ru.mirea.ishutin.data.data.repository.ProductRepositoryImpl;
-import ru.mirea.ishutin.data.data.repository.UserRepositoryImpl;
-import ru.mirea.ishutin.data.data.storage.ProductStorage;
-import ru.mirea.ishutin.data.data.storage.UserStorage;
-import ru.mirea.ishutin.data.data.storage.sharedprefs.SharedPrefProductStorage;
-import ru.mirea.ishutin.data.data.storage.sharedprefs.SharedPrefUserStorage;
-import ru.mirea.ishutin.domain.domain.repository.ProductRepository;
-import ru.mirea.ishutin.domain.domain.repository.UserRepository;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import ru.mirea.ishutin.mobile_store.R;
 import ru.mirea.ishutin.mobile_store.databinding.ActivityMainBinding;
-
+import ru.mirea.ishutin.mobile_store.presentation.fragments.ProductsFragment;
+import ru.mirea.ishutin.mobile_store.presentation.fragments.ProfileFragment;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,13 +27,40 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        ProductRepository productRepository = new ProductRepositoryImpl(this);
-//        UserRepository userRepository = new UserRepositoryImpl(this);
+        TextView headerTitle = findViewById(R.id.header_title);
 
-        ProductStorage sharedPrefProductStorage = new SharedPrefProductStorage(this);
-        ProductRepository productRepository = (ProductRepository) new ProductRepositoryImpl(sharedPrefProductStorage);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.navbar);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
 
-        UserStorage sharedPrefUserStorage = new SharedPrefUserStorage(this);
-        UserRepository userRepository = (UserRepository) new UserRepositoryImpl(sharedPrefUserStorage);
+                switch (item.getItemId()) {
+                    case R.id.nav_products:
+                        headerTitle.setText("Главная");
+                        selectedFragment = new ProductsFragment();
+                        break;
+                    case R.id.nav_profile:
+                        headerTitle.setText("Профиль");
+                        selectedFragment = new ProfileFragment();
+                        break;
+                }
+
+                if (selectedFragment != null) {
+                    getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_container_view, selectedFragment)
+                            .commit();
+                }
+
+                return true;
+            }
+        });
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container_view, new ProductsFragment())
+                    .commit();
+        }
     }
 }

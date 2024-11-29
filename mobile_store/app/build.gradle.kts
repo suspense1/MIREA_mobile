@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.github.glide)
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(libs.appcompat)

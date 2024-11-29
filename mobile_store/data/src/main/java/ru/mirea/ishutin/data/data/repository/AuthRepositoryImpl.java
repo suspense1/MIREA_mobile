@@ -3,8 +3,10 @@ package ru.mirea.ishutin.data.data.repository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ru.mirea.ishutin.domain.domain.models.User;
 import ru.mirea.ishutin.domain.domain.repository.AuthCallback;
 import ru.mirea.ishutin.domain.domain.repository.AuthRepository;
+import ru.mirea.ishutin.domain.domain.repository.UserCallback;
 
 public class AuthRepositoryImpl implements AuthRepository {
 
@@ -52,4 +54,20 @@ public class AuthRepositoryImpl implements AuthRepository {
         FirebaseUser user = auth.getCurrentUser();
         return user != null;
     }
+
+    @Override
+    public String getUserId() {
+        return auth.getCurrentUser().getUid();
+    }
+
+    @Override
+    public void getUserInfo(String id, UserCallback userCallback) {
+        if (auth.getCurrentUser() != null) {
+            userCallback.onSuccess(new User(id, auth.getCurrentUser().getDisplayName(), auth.getCurrentUser().getEmail()));
+        } else {
+            userCallback.onError("Error, no user");
+        }
+    }
+
+
 }

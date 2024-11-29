@@ -24,8 +24,8 @@ public class RemoteData {
         productApi.getProducts().enqueue(new Callback<ProductResponse>() {
             @Override
             public void onResponse(Call<ProductResponse> call, Response<ProductResponse> response) {
-                if (response.isSuccessful() && response.body() != null){
-                    apiCallback.onSuccess(response.body().getData());
+                if (response.isSuccessful() && response.body() != null) {
+                    apiCallback.onSuccess(response.body().getData().getProducts());
                 }else{
                     apiCallback.onFailure(new Exception("Error"));
                 }

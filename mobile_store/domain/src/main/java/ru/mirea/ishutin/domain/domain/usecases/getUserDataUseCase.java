@@ -1,18 +1,18 @@
 package ru.mirea.ishutin.domain.domain.usecases;
 
-import ru.mirea.ishutin.domain.domain.models.User;
-import ru.mirea.ishutin.domain.domain.repository.UserRepository;
+import ru.mirea.ishutin.domain.domain.repository.AuthRepository;
+import ru.mirea.ishutin.domain.domain.repository.UserCallback;
 
-public class getUserDataUseCase {
+public class GetUserDataUseCase {
 
-    private UserRepository usersRepository;
+    private AuthRepository authRepository;
 
-    public getUserDataUseCase(UserRepository usersRepository){
-        this.usersRepository = usersRepository;
+    public GetUserDataUseCase(AuthRepository authRepository){
+        this.authRepository = authRepository;
     }
 
-    public User execute(){
-        return usersRepository.getUserData(0);
+    public void execute(String id, UserCallback userCallback) {
+        authRepository.getUserInfo(id, userCallback);
     }
 
 }

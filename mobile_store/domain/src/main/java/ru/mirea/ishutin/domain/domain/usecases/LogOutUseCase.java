@@ -1,17 +1,19 @@
 package ru.mirea.ishutin.domain.domain.usecases;
 
+import ru.mirea.ishutin.domain.domain.repository.AuthCallback;
+import ru.mirea.ishutin.domain.domain.repository.AuthRepository;
 import ru.mirea.ishutin.domain.domain.repository.UserRepository;
 
 public class LogOutUseCase {
 
-    private UserRepository userRepository;
+    private AuthRepository authRepository;
 
-    public  LogOutUseCase(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public LogOutUseCase(AuthRepository authRepository) {
+        this.authRepository = authRepository;
     }
 
-    public boolean execute(){
-        return userRepository.log_out();
+    public void execute(AuthCallback authCallback) {
+        authRepository.signOut(authCallback);
     }
 
 }

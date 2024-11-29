@@ -21,4 +21,5 @@ public class UserRepositoryImpl implements UserRepository {
     public User[] getAllUsers() {
         return new User[] {User.getUser()};
     }
+
 }

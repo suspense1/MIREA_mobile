@@ -1,17 +1,19 @@
 package ru.mirea.ishutin.domain.domain.usecases;
 
+import ru.mirea.ishutin.domain.domain.repository.AuthCallback;
+import ru.mirea.ishutin.domain.domain.repository.AuthRepository;
 import ru.mirea.ishutin.domain.domain.repository.UserRepository;
 
 public class SignInUseCase {
 
-    private UserRepository userRepository;
+    private AuthRepository authRepository;
 
-    public  SignInUseCase(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public SignInUseCase(AuthRepository authRepository) {
+        this.authRepository = authRepository;
     }
 
-    public boolean execute(){
-        return userRepository.sign_in("testmail@gmail.com", "1234567");
+    public void execute(String username, String password, AuthCallback authCallback) {
+        authRepository.signIn(username, password, authCallback);
     }
 
 }

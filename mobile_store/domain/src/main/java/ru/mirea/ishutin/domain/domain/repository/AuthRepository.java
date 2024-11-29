@@ -6,4 +6,6 @@ public interface AuthRepository {
     void signUp(String email, String password, AuthCallback callback);
     void signOut(AuthCallback callback);
     boolean isUserLoggedIn();
+    String getUserId();
+    void getUserInfo(String id, UserCallback userCallback);
 }

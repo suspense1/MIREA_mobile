@@ -14,13 +14,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import ru.mirea.ishutin.data.data.repository.AuthRepositoryImpl;
 import ru.mirea.ishutin.domain.domain.repository.AuthCallback;
+import ru.mirea.ishutin.domain.domain.usecases.IsUserLoggedUseCase;
+import ru.mirea.ishutin.domain.domain.usecases.SignInUseCase;
 import ru.mirea.ishutin.mobile_store.R;
 import ru.mirea.ishutin.mobile_store.databinding.ActivityAuthBinding;
 
 public class AuthActivity extends AppCompatActivity {
 
     private ActivityAuthBinding binding;
-    private final AuthViewModel viewModel = new AuthViewModel(new AuthRepositoryImpl());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +29,34 @@ public class AuthActivity extends AppCompatActivity {
         binding = ActivityAuthBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        AuthRepositoryImpl authRepository = new AuthRepositoryImpl();
+        SignInUseCase signInUseCase = new SignInUseCase(authRepository);
+
+        IsUserLoggedUseCase isUserLoggedUseCase = new IsUserLoggedUseCase(authRepository);
+        if (isUserLoggedUseCase.execute()) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         binding.signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = binding.emailInput.getText().toString();
                 String password = binding.passwordInput.getText().toString();
-                viewModel.signIn(email, password, new AuthCallback() {
+                signInUseCase.execute(email, password, new AuthCallback() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(getApplicationContext(), "Вы успешно вошли!", Toast.LENGTH_LONG).show();
                         Log.d("AUTH", "Success");
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
 
                     @Override
                     public void onError(String error) {
+                        Toast.makeText(getApplicationContext(), "Auth failure", Toast.LENGTH_LONG).show();
                         Log.d("AUTH", "Error: " + error);
                     }
                 });

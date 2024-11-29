@@ -14,13 +14,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 import ru.mirea.ishutin.data.data.repository.AuthRepositoryImpl;
 import ru.mirea.ishutin.domain.domain.repository.AuthCallback;
+import ru.mirea.ishutin.domain.domain.repository.AuthRepository;
+import ru.mirea.ishutin.domain.domain.usecases.IsUserLoggedUseCase;
+import ru.mirea.ishutin.domain.domain.usecases.SignUpUseCase;
 import ru.mirea.ishutin.mobile_store.R;
 import ru.mirea.ishutin.mobile_store.databinding.ActivityRegBinding;
 
 public class RegActivity extends AppCompatActivity {
 
     private ActivityRegBinding binding;
-    private final AuthViewModel viewModel = new AuthViewModel(new AuthRepositoryImpl());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +30,34 @@ public class RegActivity extends AppCompatActivity {
         binding = ActivityRegBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        AuthRepositoryImpl authRepository = new AuthRepositoryImpl();
+        SignUpUseCase signUpUseCase = new SignUpUseCase(authRepository);
+
+        IsUserLoggedUseCase isUserLoggedUseCase = new IsUserLoggedUseCase(authRepository);
+        if (isUserLoggedUseCase.execute()) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         binding.signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = binding.emailInput.getText().toString();
                 String password = binding.passwordInput.getText().toString();
-                viewModel.signUp(email, password, new AuthCallback() {
+                signUpUseCase.execute(email, password, new AuthCallback() {
                     @Override
                     public void onSuccess() {
-                        Toast.makeText(getApplicationContext(), "Вы успешно зарегистрировались!", Toast.LENGTH_LONG).show();
                         Log.d("REG", "Success");
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
 
                     @Override
                     public void onError(String error) {
+                        Toast.makeText(getApplicationContext(), "Reg failure", Toast.LENGTH_LONG).show();
                         Log.d("REG", "Error: " + error);
                     }
                 });
