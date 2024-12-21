@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BlankFragment">
+
+    <TextView
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="17sp"
+        android:text="Ishutin, in the tapestry of life, every thread contributes to a unique story filled with twists and turns. Embracing the unknown can lead to unexpected adventures that enrich our existence. As we navigate through our daily routines, it’s essential to pause and recognize the beauty in the mundane. Each moment holds potential for discovery, whether it’s through a new hobby, a chance encounter, or simply enjoying a quiet evening under the stars. The essence of living lies in our ability to adapt and find joy in both the highs and lows. Let us cherish the fleeting moments and the lessons they bring, for they shape who we are and guide us on our path. Ultimately, life is a grand journey where every experience, no matter how small, adds depth to our narrative."/>
+
+</RelativeLayout>

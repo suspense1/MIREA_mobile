@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "ru.mirea.ishutin.bottomnavigationapp-mergeDebugResources-43:/layout/fragment_blank.xml",
+        "source": "ru.mirea.ishutin.bottomnavigationapp-main-46:/layout/fragment_blank.xml"
+    },
+    {
+        "merged": "ru.mirea.ishutin.bottomnavigationapp-mergeDebugResources-43:/layout/fragment_notifications.xml",
+        "source": "ru.mirea.ishutin.bottomnavigationapp-main-46:/layout/fragment_notifications.xml"
+    },
+    {
+        "merged": "ru.mirea.ishutin.bottomnavigationapp-mergeDebugResources-43:/layout/fragment_dashboard.xml",
+        "source": "ru.mirea.ishutin.bottomnavigationapp-main-46:/layout/fragment_dashboard.xml"
+    },
+    {
+        "merged": "ru.mirea.ishutin.bottomnavigationapp-mergeDebugResources-43:/layout/fragment_home.xml",
+        "source": "ru.mirea.ishutin.bottomnavigationapp-main-46:/layout/fragment_home.xml"
+    },
+    {
+        "merged": "ru.mirea.ishutin.bottomnavigationapp-mergeDebugResources-43:/layout/activity_main.xml",
+        "source": "ru.mirea.ishutin.bottomnavigationapp-main-46:/layout/activity_main.xml"
+    }
+]

@@ -7,7 +7,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,41 +31,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setSupportActionBar(binding.toolbar);
 
-        TextView headerTitle = findViewById(R.id.header_title);
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(
+                        R.id.nav_products,
+                        R.id.nav_profile)
+                        .build();
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.navbar);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
-
-                switch (item.getItemId()) {
-                    case R.id.nav_products:
-                        headerTitle.setText("Главная");
-                        selectedFragment = new ProductsFragment();
-                        break;
-                    case R.id.nav_profile:
-                        headerTitle.setText("Профиль");
-                        selectedFragment = new ProfileFragment();
-                        break;
-                }
-
-                if (selectedFragment != null) {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.fragment_container_view, selectedFragment)
-                            .commit();
-                }
-
-                return true;
-            }
-        });
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container_view, new ProductsFragment())
-                    .commit();
-        }
+        NavController navController = Navigation.findNavController(
+                this, R.id.nav_host_fragment_activity_main);
+        NavigationUI.setupActionBarWithNavController(this,
+                navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.navbar,
+                navController);
     }
 }

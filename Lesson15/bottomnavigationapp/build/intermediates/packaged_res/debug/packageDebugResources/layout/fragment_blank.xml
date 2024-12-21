@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BlankFragment">
+
+    <TextView
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="17sp"
+        android:text="Welcome to our random page where we explore the beauty of spontaneity and creativity. Life is full of surprises, and every new day brings fresh opportunities and challenges. Embrace the unexpected as it often leads to the most memorable experiences. Take a moment to appreciate the little things around you, from the vibrant colors of nature to the simple joys of everyday life. It's important to step outside your comfort zone and try new things, as this is how we grow and learn. Remember to find time for yourself amidst the chaos, allowing for moments of peace and reflection. The journey of life is not just about reaching the destination but enjoying the ride along the way. So, let’s celebrate the randomness and unpredictability that make our lives truly unique and exciting!"/>
+
+</RelativeLayout>
